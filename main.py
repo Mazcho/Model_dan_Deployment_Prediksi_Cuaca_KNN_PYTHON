@@ -22,8 +22,8 @@ except FileNotFoundError:
 
 # Using "with" notation
 with st.sidebar:
-    logomain = Image.open('Assets/logo.png',"rb")
-    st.image(logomain,width=200)
+    logomain = Image.open('Assets/logo.png')
+    st.image(logomain)
     menuapp = st.radio("MENU PREDIKSI CUACA",["Menu Utama","Analsis Cuaca","Dataset","App"])
 if menuapp == "Menu Utama":
     #membuat container
