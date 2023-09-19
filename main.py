@@ -101,7 +101,7 @@ if menuapp == "App":
             prediksi_cuaca = model.predict([[precipitation,temp_max,temp_min,wind]])
     with col9:
         if prediksi_cuaca==1:
-            weather1 = Image.open('Assets/drizzle.jpg')
+            weather1 = Image.open('Assets/drizzle.png')
             st.title("Cuaca: Gerimis")
             st.image(weather1,width=300)
         elif prediksi_cuaca==2:
