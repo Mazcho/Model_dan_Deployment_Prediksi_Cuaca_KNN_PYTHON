@@ -46,7 +46,7 @@ if menuapp=="Analsis Cuaca":
     st.markdown("Dari dataset yang didapatkan dari pembuat, ada beberapa hal yang dapat diulas dari dataset Prediksi cuaca 2012-2015. Mulai dari yang pertama yaitu Analisis Frekuensi cuaca.")
     dataku=df["weather"].value_counts()
     st.bar_chart(dataku)
-    st.markdown("Pada 3 tahun terahkir 2012-2015")
+    st.markdown("Pada 3 tahun terahkir 2012-2015, cuaca yang sering dijumpai ialah hujan dan matahari. Dari kedua cuaca in menunjukkan bahwa 2 cuaca tersebut dominan di bulan bulan tertentu, sedangkan berkabut gerimis dan bersalju sangat jarang ")
 
 
 
