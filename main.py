@@ -30,7 +30,7 @@ if menuapp == "Menu Utama":
     ct1 = st.container() 
     with ct1:   
         #insert header gambar
-        headermenu = Image.open('Assets\weather-header-NEW-2.jpg')
+        headermenu = Image.open('Assets/weather-header-NEW-2.jpg')
         st.image(headermenu)
         st.header('Perubahan Cuaca Selama 3 tahun')
         st.write("By : Nicholaus verdhy Putranto || A11.2020.12447")
@@ -101,7 +101,7 @@ if menuapp == "App":
             prediksi_cuaca = model.predict([[precipitation,temp_max,temp_min,wind]])
     with col9:
         if prediksi_cuaca==1:
-            weather1 = Image.open('Assets\weather-header-NEW-2.jpg')
+            weather1 = Image.open('Assets/drizzle.jpg')
             st.title("Cuaca: Gerimis")
             st.image(weather1,width=300)
         elif prediksi_cuaca==2:
