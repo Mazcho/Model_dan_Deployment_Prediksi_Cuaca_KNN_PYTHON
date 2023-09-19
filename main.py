@@ -50,16 +50,20 @@ if menuapp == "App":
             prediksi_cuaca = model.predict([[precipitation,temp_max,temp_min,wind]])
     with col9:
         if prediksi_cuaca==1:
+            st.title("Cuaca: Gerimis")
             st.image("Assets/drizzel.png")
-            st.write("Drizzle")
         elif prediksi_cuaca==2:
+            st.title("Cuaca: Bersalju")
             st.image("Assets/snow.png")
-            st.write("Snow")
         elif prediksi_cuaca==3:
-            st.write("Rain")
+            st.title("Cuaca: Hujan")
+            st.image("Assets/rain.png")
         elif prediksi_cuaca==4:
-            st.write("Sun")
+            st.title("Cuaca: Panas")
+            st.image("Assets/sun.png")
         elif prediksi_cuaca==5:
-            st.write("fog")
+            st.title("Cuaca: Berkabut")
+            st.image("Assets/fog.png")
+            
         
 
