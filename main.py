@@ -25,7 +25,7 @@ with st.sidebar:
     menuapp = st.radio("MENU PREDIKSI CUACA",["Menu Utama","Analsis Cuaca","Dataset","App"])
 if menuapp == "Menu Utama":
     #membuat container
-    ct1 = st.container()
+    ct1 = st.container() 
     with ct1:   
         #insert header gambar
         st.image('Assets\weather-header-NEW-2.jpg')
@@ -42,8 +42,11 @@ Semua perubahan cuaca ini memiliki dampak yang berbeda pada kehidupan kita dan e
 
 #membuat analisis data
 if menuapp=="Analsis Cuaca":
+    st.header("ANALISIS CUACA 2012-2015")
+    st.markdown("Dari dataset yang didapatkan dari pembuat, ada beberapa hal yang dapat diulas dari dataset Prediksi cuaca 2012-2015. Mulai dari yang pertama yaitu Analisis Frekuensi cuaca.")
     dataku=df["weather"].value_counts()
     st.bar_chart(dataku)
+    st.markdown("Pada 3 tahun terahkir 2012-2015")
 
 
 
