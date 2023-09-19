@@ -30,7 +30,8 @@ if menuapp == "Menu Utama":
     ct1 = st.container() 
     with ct1:   
         #insert header gambar
-        st.image('Assets\weather-header-NEW-2.jpg')
+        headermenu = Image.open('Assets\weather-header-NEW-2.jpg')
+        st.image(headermenu)
         st.header('Perubahan Cuaca Selama 3 tahun')
         st.write("By : Nicholaus verdhy Putranto || A11.2020.12447")
     st.divider()
@@ -55,7 +56,8 @@ if menuapp=="Analsis Cuaca":
 #membuat isi datasets
 
 if menuapp == "Dataset":
-    st.image("Assets/headerdata.jpg")
+    headerdataset = Image.open('Assets/headerdata.jpg')
+    st.image(headerdataset)
     st.title("Tentang dataset : Prediksi Cuaca")
     st.markdown("Data set tentang 'Prediksi Cuaca' berisikan data yang mengenai time series dari tahun 2012 hingga tahun 2015. Tidak hanya waktunya saja, melainkan juga faktor faktor yang mempengaruhi hasil cuaca tersebut. Atribut tersebut diantaranya ada pengendapat, temperatur maksimal, temperatur minimal dan kecepatan angin. Dari hasil dataset yang ada, berisikan data sebanyak 1460 buah data dari tahun 2012 hingga 2015")
     st.dataframe(df,width=1500,height=500,hide_index=True)
@@ -99,20 +101,25 @@ if menuapp == "App":
             prediksi_cuaca = model.predict([[precipitation,temp_max,temp_min,wind]])
     with col9:
         if prediksi_cuaca==1:
+            weather1 = Image.open('Assets\weather-header-NEW-2.jpg')
             st.title("Cuaca: Gerimis")
-            st.image("Assets/drizzel.png",width=300)
+            st.image(weather1,width=300)
         elif prediksi_cuaca==2:
+            weather2 = Image.open('Assets/snow.png')
             st.title("Cuaca: Bersalju")
-            st.image("Assets/snow.png",width=300)
+            st.image(weather2,width=300)
         elif prediksi_cuaca==3:
+            weather3 = Image.open('Assets/rain.png')
             st.title("Cuaca: Hujan")
-            st.image("Assets/rain.png",width=300)
+            st.image(weather3,width=300)
         elif prediksi_cuaca==4:
+            weather4 = Image.open('Assets/sun.png')
             st.title("Cuaca: Panas")
-            st.image("Assets/sun.png",width=300)
+            st.image(weather4,width=300)
         elif prediksi_cuaca==5:
+            weather5 = Image.open('Assets/fog.png')
             st.title("Cuaca: Berkabut")
-            st.image("Assets/fog.png",width=300)
+            st.image(weather5,width=300)
             
         
 
