@@ -40,7 +40,14 @@ Semua perubahan cuaca ini memiliki dampak yang berbeda pada kehidupan kita dan e
                     """
                     )
 
-#membuat isi
+#membuat analisis data
+if menuapp=="Analsis Cuaca":
+    dataku=df["weather"].value_counts()
+    st.bar_chart(dataku)
+
+
+
+#membuat isi datasets
 
 if menuapp == "Dataset":
     st.image("Assets/headerdata.jpg")
@@ -71,6 +78,7 @@ if menuapp == "Dataset":
             mime="text/csv",
         )
     st.write("Link dataset di KAggle : https://www.kaggle.com/datasets/ananthr1/weather-prediction ")
+
 #membuat app
 if menuapp == "App":
     st.title("Halaman Prediksi cuaca hari ini")
