@@ -11,11 +11,18 @@ with open('style.css')as f:
 #call model
 model = pickle.load(open("model.pkl","rb"))
 
+#memanggil dataset
+file_data = "prediksicuaca2.csv"
+try:
+    df = pd.read_csv(file_data)
+except FileNotFoundError:
+    st.error("File csv tidak ditemukan")
+
 
 # Using "with" notation
 with st.sidebar:
     st.image('Assets\logo.png',width=200)
-    menuapp = st.radio("Pilih salahsatu",["Menu Utama","Analsis Cuaca","Dataset","App"])
+    menuapp = st.radio("MENU PREDIKSI CUACA",["Menu Utama","Analsis Cuaca","Dataset","App"])
 if menuapp == "Menu Utama":
     #membuat container
     ct1 = st.container()
@@ -25,27 +32,52 @@ if menuapp == "Menu Utama":
         st.header('Perubahan Cuaca Selama 3 tahun')
         st.write("By : Nicholaus verdhy Putranto || A11.2020.12447")
     st.divider()
-    st.markdown(""" Cuaca di Australia antara tahun 2012 hingga 2015 telah menjadi topik yang sangat penting dan perhatian. Selama periode ini, Australia mengalami berbagai variasi cuaca yang mencolok. Di beberapa wilayah, kekeringan yang parah menjadi masalah serius, dengan pasokan air yang menipis dan tanah yang retak akibat kurangnya hujan. Hal ini memicu kebakaran hutan yang merusak serta mengganggu kehidupan manusia dan satwa liar.
+    st.markdown(""" Perubahan cuaca adalah fenomena alam yang terus-menerus memengaruhi kondisi atmosfer di seluruh dunia. Cuaca dapat berubah dari satu hari ke hari berikutnya, dan ini dipengaruhi oleh berbagai faktor seperti suhu, tekanan udara, kelembaban, dan arah angin. Dalam cuaca, terdapat beragam kondisi yang dapat kita temui, seperti kabut (fog), hujan (rain), matahari (sun), gerimis (drizzle), dan salju (snow).
 
-Namun, ada juga sisi lain dari koin cuaca Australia. Beberapa wilayah di timur negara ini mengalami musim hujan yang berlimpah, yang menyebabkan banjir hebat dan kerusakan infrastruktur. Cuaca yang ekstrem ini mencerminkan tantangan yang dihadapi Australia dalam mengelola dan beradaptasi dengan perubahan iklim global.
+Kabut, misalnya, adalah kondisi di mana partikel air sangat kecil mengambang di udara dan mengurangi jarak pandang, sering terjadi di pagi hari saat suhu udara dingin. Hujan adalah turunnya butiran-butiran air dari atmosfer yang dapat muncul dalam berbagai intensitas, dari gerimis hingga hujan lebat. Matahari adalah sumber cahaya dan panas utama bagi planet kita yang mendukung kehidupan. Gerimis adalah hujan ringan yang terdiri dari tetesan air kecil, sering kali cukup untuk membuat permukaan tanah menjadi basah. Salju adalah kristal es yang turun dari langit dan dapat menciptakan pemandangan yang indah saat menutupi permukaan bumi.
 
-Periode ini juga memicu perdebatan yang berkembang tentang perlunya tindakan perlindungan lingkungan dan mitigasi perubahan iklim untuk menghadapi masalah cuaca ekstrem yang semakin sering terjadi di Australia.
+Semua perubahan cuaca ini memiliki dampak yang berbeda pada kehidupan kita dan ekosistem di sekitar kita, dan pemahaman tentang fenomena cuaca ini penting untuk mengatasi tantangan yang terkait dengan perubahan iklim dan adaptasi di era modern ini.
                     """
                     )
 
 #membuat isi
 
 if menuapp == "Dataset":
-    st.title("Tentang dataset")
-
-
+    st.image("Assets/headerdata.jpg")
+    st.title("Tentang dataset : Prediksi Cuaca")
+    st.markdown("Data set tentang 'Prediksi Cuaca' berisikan data yang mengenai time series dari tahun 2012 hingga tahun 2015. Tidak hanya waktunya saja, melainkan juga faktor faktor yang mempengaruhi hasil cuaca tersebut. Atribut tersebut diantaranya ada pengendapat, temperatur maksimal, temperatur minimal dan kecepatan angin. Dari hasil dataset yang ada, berisikan data sebanyak 1460 buah data dari tahun 2012 hingga 2015")
+    st.dataframe(df,width=1500,height=500,hide_index=True)
+    st.markdown("Berikut adalah Deskripsi dari atribut atribut yang ada pada dataset")
+    dfdesk = pd.DataFrame([
+        {"Atribut":"Date","Deskripsi":"Tanggal kejadian cuaca tersebut"},
+        {"Atribut":"precipitation","Deskripsi":"Tingkat curah hujan pada hari itu"},
+        {"Atribut":"temp_max","Deskripsi":"Temperatur maksimal pada hari itu"},
+        {"Atribut":"temp_min","Deskripsi":"Temperatur minimal pada hari itu"},
+        {"Atribut":"wind","Deskripsi":"Kecepatan angin di hari itu"},
+        {"Atribut":"weather","Deskripsi":"Nama cuaca"},
+        {"Atribut":"Prediciton","Deskripsi":"label dari nama cuaca"},
+    ])
+    st.dataframe(dfdesk,width=1500, height=280, hide_index=True)
+    st.markdown("Dari dataset diatas, dataset ini tergolong dataset yang bersih, dimana tidak mengandung missing value sama sekali. Akan tetapi data ini mengandung data yang tidak seimbang yang dimana jumlah klasifikasi antar kelas jumlahnya tidak sama/ tidak seimbang. Bila tidak memiliki dataset, silahkan download di tombol ini !")
+    @st.cache_data
+    def convert_df(dataframe):
+        return df.to_csv().encode('utf-8')
+    csv = convert_df(df)
+    
+    st.download_button(
+            label="Download 'Prediksi Cuaca.csv' Data set",
+            data=csv,
+            file_name="Dataset Prediksi Cuaca.csv",
+            mime="text/csv",
+        )
+    st.write("Link dataset di KAggle : https://www.kaggle.com/datasets/ananthr1/weather-prediction ")
 #membuat app
 if menuapp == "App":
     st.title("Halaman Prediksi cuaca hari ini")
     st.markdown("Halo! Sekarang kamu ada pada halaman prediksi cauca yang telah dibuat oleh penulis kode ini. Silahkan masukan aspek aspek yang ada kolom dibawah ini. Setelah kalian memasukkan data data yang dibutuhkan oleh prediksi cuaca ini, silahkan kalian tekan tombol prediksi cuaca. Nanti hasil prediksi akan muncul di sebelah kanan pada halaman ini. Selamat mencoba")
     col8,col9 = st.columns(2)
     with col8:
-        precipitation = st.number_input("Masukan Kadar Pengendapan : ",value=0.0, step=0.1)
+        precipitation = st.number_input("Masukan Curah Hujan : ",value=0.0, step=0.1)
         temp_max = st.number_input("Masukan Temperatur maksimal : ", value=0.0, step=0.1)
         temp_min = st.number_input("Masukan Temperatur minimal : ",value=0.0, step=0.1)
         wind     = st.number_input("Masukan tekanan Angin : ", value=0.0, step=0.1)
