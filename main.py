@@ -35,9 +35,11 @@ Periode ini juga memicu perdebatan yang berkembang tentang perlunya tindakan per
 
 #membuat isi
 
-if menuapp == "makan":
-    st.write("Kuy")
+if menuapp == "Dataset":
+    st.title("Tentang dataset")
 
+
+#membuat app
 if menuapp == "App":
     st.title("Halaman Prediksi cuaca hari ini")
     st.markdown("Halo! Sekarang kamu ada pada halaman prediksi cauca yang telah dibuat oleh penulis kode ini. Silahkan masukan aspek aspek yang ada kolom dibawah ini. Setelah kalian memasukkan data data yang dibutuhkan oleh prediksi cuaca ini, silahkan kalian tekan tombol prediksi cuaca. Nanti hasil prediksi akan muncul di sebelah kanan pada halaman ini. Selamat mencoba")
