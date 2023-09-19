@@ -39,6 +39,8 @@ if menuapp == "makan":
     st.write("Kuy")
 
 if menuapp == "App":
+    st.title("Halaman Prediksi cuaca hari ini")
+    st.markdown("Halo! Sekarang kamu ada pada halaman prediksi cauca yang telah dibuat oleh penulis kode ini. Silahkan masukan aspek aspek yang ada kolom dibawah ini. Setelah kalian memasukkan data data yang dibutuhkan oleh prediksi cuaca ini, silahkan kalian tekan tombol prediksi cuaca. Nanti hasil prediksi akan muncul di sebelah kanan pada halaman ini. Selamat mencoba")
     col8,col9 = st.columns(2)
     with col8:
         precipitation = st.number_input("Masukan Kadar Pengendapan : ",value=0.0, step=0.1)
@@ -51,19 +53,19 @@ if menuapp == "App":
     with col9:
         if prediksi_cuaca==1:
             st.title("Cuaca: Gerimis")
-            st.image("Assets/drizzel.png")
+            st.image("Assets/drizzel.png",width=300)
         elif prediksi_cuaca==2:
             st.title("Cuaca: Bersalju")
-            st.image("Assets/snow.png")
+            st.image("Assets/snow.png",width=300)
         elif prediksi_cuaca==3:
             st.title("Cuaca: Hujan")
-            st.image("Assets/rain.png")
+            st.image("Assets/rain.png",width=300)
         elif prediksi_cuaca==4:
             st.title("Cuaca: Panas")
-            st.image("Assets/sun.png")
+            st.image("Assets/sun.png",width=300)
         elif prediksi_cuaca==5:
             st.title("Cuaca: Berkabut")
-            st.image("Assets/fog.png")
+            st.image("Assets/fog.png",width=300)
             
         
 
