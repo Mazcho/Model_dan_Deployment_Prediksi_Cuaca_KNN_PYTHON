@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import pickle
+from PIL import image
 from sklearn.neighbors import KNeighborsClassifier
 
 #open file css
@@ -21,7 +22,8 @@ except FileNotFoundError:
 
 # Using "with" notation
 with st.sidebar:
-    st.image('Assets\logo.png',width=200)
+    logomain = Image.open(r'assets/logo.png')
+    st.image(logomain,width=200)
     menuapp = st.radio("MENU PREDIKSI CUACA",["Menu Utama","Analsis Cuaca","Dataset","App"])
 if menuapp == "Menu Utama":
     #membuat container
